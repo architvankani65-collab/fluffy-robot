@@ -1,0 +1,55 @@
+// Pin Definitions
+const int gasSensorPin = A0;        // MQ2 analog output
+const int tempSensorPin = A1;       // Temperature sensor analog output (e.g., LM35)
+const int buzzerPin = 8;             // Buzzer digital pin
+const int ledPin = 9;                // LED digital pin
+const int motorPin = 10;             // BLDC motor control pin (PWM or digital)
+
+// Threshold values (adjust experimentally)
+const int gasThreshold = 300;        // MQ2 analog value indicating gas presence
+const float tempThresholdC = 50.0;   // Temperature threshold in Celsius
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(motorPin, OUTPUT);
+  digitalWrite(buzzerPin, LOW);
+  digitalWrite(ledPin, LOW);
+  digitalWrite(motorPin, LOW);
+}
+
+void loop() {
+  // Read sensor values
+  int gasValue = analogRead(gasSensorPin);
+  int tempValue = analogRead(tempSensorPin);
+
+  // Convert temperature sensor analog value to Celsius (assuming LM35)
+  // LM35 outputs 10mV per °C, ADC ref = 5V, 10-bit ADC (1024 steps)
+  float voltage = (tempValue * 5.0) / 1024.0;
+  float temperatureC = voltage * 100.0;
+
+  Serial.print("Gas Sensor Value: ");
+  Serial.print(gasValue);
+  Serial.print("  Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" C");
+
+  // Gas detection
+  if (gasValue > gasThreshold) {
+    digitalWrite(buzzerPin, HIGH);  // Turn buzzer ON
+    digitalWrite(ledPin, HIGH);     // Turn LED ON
+  } else {
+    digitalWrite(buzzerPin, LOW);   // Turn buzzer OFF
+    digitalWrite(ledPin, LOW);      // Turn LED OFF
+  }
+
+  // Temperature control for BLDC motor
+  if (temperatureC > tempThresholdC) {
+    analogWrite(motorPin, 255);     // Run motor at full speed (PWM max)
+  } else {
+    analogWrite(motorPin, 0);       // Stop motor
+  }
+
+  delay(500);  // Wait for half a second before next reading
+}
