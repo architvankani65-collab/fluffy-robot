@@ -1,0 +1,28 @@
+Introduction
+
+The Fire and Gas Detection System is designed to enhance safety by detecting the presence of flammable gases or flames and responding promptly to prevent accidents. Using the MQ2 gas sensor, the system continuously monitors the environment for hazardous gases such as LPG, methane, and smoke. When a dangerous level of gas is detected, an alarm buzzer sounds and an indicator LED lights up to alert people nearby.
+Additionally, the system monitors the ambient temperature using a temperature sensor. If the temperature rises beyond a predefined safe limit, a BLDC motor with a propeller is activated to operate as a fan. This fan helps to cool the environment or disperse accumulated gases, reducing the risk of fire spreading or explosion.
+Powered by an Arduino Uno and a battery, this project offers an automated safety solution that can be applied in homes, laboratories, or industrial settings where gas leaks and fire hazards are a concern.
+
+
+OBJECTIVES:
+To detect the presence of flammable gases and smoke in the environment using the MQ2 gas sensor for early fire hazard identification.
+To alert users immediately through an audible buzzer and visual LED indicator upon detection of dangerous gas levels or flames.
+To monitor ambient temperature continuously and activate a cooling fan when the temperature exceeds a certain threshold, helping to reduce the risk of fire escalation.
+To provide an automated safety response system that operates independently without manual intervention.
+To design a portable and efficient safety device powered by a battery, suitable for use in homes, laboratories, or industrial environments.
+
+Components Required
+Component	Description	Quantity
+Arduino Uno	Microcontroller board to control the system	1
+MQ2 Gas Sensor	Sensor to detect flammable gases and smoke	1
+Temperature Sensor (e.g., LM35, DHT11)	Sensor to measure ambient temperature	1
+BLDC Motor	Brushless DC motor to operate the cooling fan	1
+Propeller	Attached to the BLDC motor to blow air	1
+Buzzer / Beeper	Provides audible alarm on gas detection	1
+Indicator LED	Visual alert for gas or flame detection	1 or more
+Battery	Power source for the system	1
+Resistors	Used with sensors and LEDs for circuit protection	As needed
+Base / Chassis	Mounting platform for components	1
+Connecting Wires	To connect components on breadboard or PCB	As needed
+Breadboard / PCB	For assembling the circuit	1
